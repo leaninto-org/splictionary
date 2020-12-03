@@ -20,20 +20,6 @@ class SplictionController extends Controller
         \View::share($this->share);
         return view('splictionary.listing');
     }
-    public function test(){
-/*        $definitions = \App\Definitions::all();
-        foreach ( $definitions as $definitionO){
-            $definitionO->votes_up = \App\Votes::where('definition_id', $definitionO->id)
-            ->where('vote',1)
-            ->count();
-            $definitionO->votes_down = \App\Votes::where('definition_id',$definitionO->id)
-            ->where('vote',0)
-            ->count();
-            $definitionO->update();
-        }   */
-        $recap = new \App\reCaptchaAPI;
-        $recap->verify();
-    }
     public function vote(Request $request){
         $vote = new \App\Votes();
         $vote->ip = \Request::ip();
@@ -64,23 +50,18 @@ class SplictionController extends Controller
         return view('splictionary.define');
     }
     public function defineSubmission(Request $request){
-        $recap = \App\reCaptchaAPI::verify($request['g-recaptcha-response']);
-        if($recap->success == "true"){
+        $validation = $request->validate([
+            "type_of_word" => "string|required",
+            "definition" => "string|required",
+        ]);
             $definition = new \App\Definitions;
             $this->share['spliction'] = $spliction = \App\Splictions::where('word_splice',$request->spliction)->first();
-            $validation = $request->validate([
-                "type_of_word" => "string|required",
-                "definition" => "string|required",
-            ]);
             $definition->definition = $request->definition;
             $definition->spliction_id = $spliction->id;
             $definition->type_of_word = $request->type_of_word;
             $definition->status = -1;
             $definition->save();
             return redirect()->route('spliction.entry',['spliction'=>$request->spliction]);
-        }else{
-            return redirect()->route('home');
-        }
     }
 
     public function entry(Request $request){

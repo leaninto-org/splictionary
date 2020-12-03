@@ -8,6 +8,7 @@ class reCaptchaAPI extends Model
 {
     public static function verify($response){
     	// Get cURL resource
+    	//clock($response);
 		$curl = curl_init();
 		// Set some options - we are passing in a useragent too here
 		curl_setopt_array($curl, [
@@ -17,7 +18,7 @@ class reCaptchaAPI extends Model
 		    CURLOPT_POSTFIELDS => [
 		    	"secret" => "6LfIEAEVAAAAAJdVxkhcjCdNkjCzqqfB-3DPF3JN",
 				"response" => $response,
-				//"remoteip" => 
+
 		    ]
 		]);
 		// Send the request & save response to $resp

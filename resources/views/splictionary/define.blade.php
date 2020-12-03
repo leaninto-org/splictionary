@@ -38,11 +38,8 @@
 								
 							</div>
 							<div class="col-12">
-								<button class="btn btn-splorange g-recaptcha" 
-								type="submit"
-						        data-sitekey="6LfIEAEVAAAAAJSo-mQiPKhlT3kfEIUnyWsHWZHT" 
-						        data-callback='onSubmit' 
-						        data-action='submit'/>Submit</button>
+								<button type="submit" class="btn btn-splorange g-recaptcha" 
+								type="submit"/>Submit</button>
 								<a class="btn btn-splpink" href="{{route('spliction.entry',['spliction'=>$spliction->word_splice])}}" >Cancel</a>
 							</div>
 						</div>

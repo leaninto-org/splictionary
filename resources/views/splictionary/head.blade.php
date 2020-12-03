@@ -7,16 +7,8 @@
 <link rel="icon" 
       type="image/png" 
       href="/favicon.png">
-<script src="https://www.google.com/recaptcha/api.js"></script>
- <script>
-   function onSubmit(token) {
-   	console.log(token);
-     document.getElementById("spliction-define").submit();
-   }
- </script>
 <script src="/js/advertising.js"></script>
 <script src="/js/votes.js"></script>
-
 <script src="https://kit.fontawesome.com/3261ed6533.js" crossorigin="anonymous"></script>
 <script src="https://cdn.tiny.cloud/1/o9d4jet6ewjcnm6wnj2uhxfw0sky7z784rbjoabqloqiwdr9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <title>{{$title ?? "Splictionary - A word splice site"}}</title>
